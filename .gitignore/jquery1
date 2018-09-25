@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>first example</title>
+<style>
+.nice{
+    padding: 50px;
+    background-color: brown;
+    color: beige;
+}
+</style>
+
+</head>
+<body>
+    <h1>Intro JQ</h1>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $("h1").addClass("nice")
+
+    // hint1  - .actionSubject()
+// hint2 - add, remove, has, is, toggle.....
+
+
+    // se inarca  in biblioteca : Jquery, $
+console.log();
+// 1 folosire - selectie $(data/css_selector).action(param);
+//$(".active").addClass("open");
+
+//2 global
+//$action(params)
+//$get("http://torrents.md").done(f())
+
+// chaining
+/*$("selector")
+.action1()
+.action2()
+.action3();*/
+
+//$("li:nth-child(1)")
+
+</script>
+
+</body>
+</html>
