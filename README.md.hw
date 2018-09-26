@@ -1,0 +1,46 @@
+# Jquery
+
+    function addInput(parent_selectors, input_placeholder, input_checkbox){
+        $(parent_selectors).append(
+            $("<form>").append(
+                $("<label>").append(
+                    $("<input>").attr("placeholder", "write text", input_placeholder) 
+                )                   
+                )    
+                .append(
+                    $("<label>").append(
+                        $("<input>").attr("placeholder", "write text", input_placeholder) 
+                    )                        
+                    )    
+                    .append(
+                        $("<label>").append(
+                            $("<input>").attr("checkbox", "checked", input_checkbox) 
+                        )                        
+                        )                   
+            )       
+    }
+    addInput("body");
+    
+    ////////////////////
+    
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Input</title>
+    <link rel="stylesheet" href="f_input.css">
+    <style>
+    label{
+    display: block;
+    margin: 10px;
+}
+    </style>
+</head>
+<body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="form_imput.js"></script>
+</body>
+</html>
