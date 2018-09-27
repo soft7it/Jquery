@@ -1,30 +1,39 @@
 # Jquery
 
-    function addInput(parent_selectors, input_placeholder, input_checkbox){
-        $(parent_selectors).append(
-            $("<form>").append(
+function addInput(parent_selectors, input_placeholder, input_checkbox) {
+    $(parent_selectors).append(
+        $("<form>").append(
+            $("<label>").append(
+                $("<input>").attr({ 'type': "text", "id": "title", "placeholder": "task title" })
+            )
+        )
+            .append(
                 $("<label>").append(
-                    $("<input>").attr("placeholder", "write text", input_placeholder) 
-                )                   
-                )    
-                .append(
-                    $("<label>").append(
-                        $("<input>").attr("placeholder", "write text", input_placeholder) 
-                    )                        
-                    )    
-                    .append(
-                        $("<label>").append(
-                            $("<input>").attr("checkbox", "checked", input_checkbox) 
-                        )                        
-                        )                   
-            )       
-    }
-    addInput("body");
+                $("<input>").attr({ 'type': "date", "id": "date", "placeholder": "due date" })
+                )
+            )
+            .append(
+                $("<label>").append(
+                $("<input>").attr({ 'type': "checkbox" })
+                )
+            )
+            .append(
+                $("<button>").text('Save')
+                .addClass('btn green')
+                .click(function(){
+                    alert($('input').val() + '\n' + $('input[id= date ]').val()  );                    
+                })
+            )
+            
+    )
+}
+addInput("body");
     
     ////////////////////
     
-    <!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,15 +41,20 @@
     <title>Input</title>
     <link rel="stylesheet" href="f_input.css">
     <style>
-    label{
-    display: block;
-    margin: 10px;
+        label {
+            display: block;
+            margin: 10px;
+        }
+        input, label {
+  line-height: 1.5em;
 }
     </style>
 </head>
+
 <body>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="form_imput.js"></script>
+    <script src="f_imput.js"></script>
 </body>
+
 </html>
