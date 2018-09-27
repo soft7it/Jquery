@@ -58,3 +58,43 @@
     }
     initDropdown();
     </script> 
+    
+    /////////////////////////
+    
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ContentEditt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+    <style>
+        
+    </style>
+</head>
+
+<body>
+<article class="edit">
+    <button class="btn"><small>Edit</small></button>
+    <h1>Heloo Sereokelr</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sequi, maxime.</p>
+
+</article>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>        
+        var $edit = $('.edit');
+        var $btn = $('.btn');
+
+        $btn.click(function(){
+            $edit.find('h1,p').attr('contenteditable', 'true');        
+        });
+    </script> 
+    
+</body>
+
+</html>
