@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script>
+        $(document).ready(function () {
+            $("div")
+            .addClass('stat')
+            .append($('<i>').addClass('fa fa-minus')
+                    ).click(function () {
+                $("i")
+                .toggleClass("main fa-plus")
+                
+            });
+        });
+    </script>
+    <style>
+        .stat {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            background: red;
+            position: relative;
+            border: 3px solid #0098ff;
+        }
+
+        .main {
+            width: 110px;
+            height: 110px;
+            border-radius: 100%;
+            background: #389;
+             position: relative;
+             border: 3px solid #ff4f00;
+            
+           
+        }
+        .fa-plus:before{
+    content: "\f067";
+    margin: 0; 
+    padding: 0px;   
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    }
+ .fa-minus{
+        content: "\f068";
+        color: yellow;
+        margin: 0;    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    }
+
+    </style>
+</head>
+
+<body>
+
+
+    <div></div>
+
+
+</body>
+
+</html>
