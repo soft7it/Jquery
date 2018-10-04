@@ -1,0 +1,113 @@
+// data basa
+var offers = [
+    {
+        title: 'Vacation to Nederland',
+        destination: 'New York',
+        period: {
+            from: '2018-10-5',
+            to: '2018-10-10'
+        },
+        photo: 
+        ['http://picsum.photos/400/300?image=1'],
+        price: 2000
+    },
+    {
+        title: 'Go alone',
+        destination: 'New York',
+        period: {
+            from: '2019-10-5',
+            to: '2019-10-10'
+        },
+        photo:
+         ['http://picsum.photos/400/300?image=2'],
+        price: 4000
+    },
+    {
+        title: 'One family Hollyday',
+        destination: 'kisinau',
+        period: {
+            from: '2019-10-5',
+            to: '2020-10-10'
+        },
+        photo:
+         ['http://picsum.photos/400/300?image=3'],
+        price: 3000
+    },
+    {
+        title: 'One family Hollyday 2',
+        destination: 'kisinau',
+        period: {
+            from: '2020-10-5',
+            to: '2022-10-10'
+        },
+        photo:
+         ['http://picsum.photos/400/300?image=3'],
+        price: 3000
+    },
+];
+
+////  logic////////
+
+function showTeasers( name ){
+    var $offers_div = $('#offers');
+    $offers_div.empty(); // elimina elementele copil
+    $( offers ).each(function(i,offer){
+        if( name===undefined ||
+              name.length==0 || 
+             offer.destination.toLowerCase().startsWith( name.toLowerCase() ) ){
+        //console.log(i,offers);
+        $offers_div.append(
+            $( '<div>' ).append(
+                $( '<h3>' ).html(
+                    $( '<a>' )
+                    .html( offer.title + ' : ' + '<small>' + offer.period.from + ' - ' + offer.period.to + '</small>')
+                    .attr( 'href', '#' )
+                    .on( 'click', showFull )
+                    .data( 'i',i )
+                )
+                )
+        );
+            }
+    });
+}
+function showFull(){
+    var i = $(this).data( 'i' );
+    var offer = offers[i];
+    alert( offer.title );   
+    
+}
+
+$(  '#filters input' ).on('keyup', function(){
+    var name = $(this).val();
+    showTeasers( name );
+})
+
+showTeasers();
+
+////////////////////
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="tour.css">
+</head>
+<body>
+
+    <div id="filters">
+        <input type="text" placeholder="enter destination">
+    </div>
+
+    <div id="offers">
+
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="tour.js"></script>
+    
+</body>
+</html>
