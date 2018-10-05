@@ -7,8 +7,8 @@ var offers = [
             from: '2018-10-5',
             to: '2018-10-10'
         },
-        photo: 
-        ['http://picsum.photos/400/300?image=1'],
+        photo:
+            ['http://picsum.photos/400/300?image=1'],
         price: 2000
     },
     {
@@ -19,7 +19,7 @@ var offers = [
             to: '2019-10-10'
         },
         photo:
-         ['http://picsum.photos/400/300?image=2'],
+            ['http://picsum.photos/400/300?image=2'],
         price: 4000
     },
     {
@@ -30,7 +30,7 @@ var offers = [
             to: '2020-10-10'
         },
         photo:
-         ['http://picsum.photos/400/300?image=3'],
+            ['http://picsum.photos/400/300?image=3'],
         price: 3000
     },
     {
@@ -41,56 +41,64 @@ var offers = [
             to: '2022-10-10'
         },
         photo:
-         ['http://picsum.photos/400/300?image=4'],
+            ['http://picsum.photos/400/300?image=4'],
         price: 3950
     },
 ];
 
 ////  logic////////
 
-function showTeasers( name ){
+function showTeasers(name) {
     var $offers_div = $('#offers');
     $offers_div.empty(); // elimina elementele copil
-    $( offers ).each(function(i,offer){
-        if( name===undefined ||
-              name.length==0 || 
-             offer.destination.toLowerCase().startsWith( name.toLowerCase() ) ){
-        //console.log(i,offers);
-        $offers_div.append(
-            $( '<div>' ).append(
-                $( '<h3>' ).html(
-                    $( '<a>' )
-                    .html( offer.title + ' : ' + '<small>' + offer.period.from + ' - ' + offer.period.to + '</small>')
-                    .attr( 'href', '#' )
-                    .on( 'click', showFull )
-                    .data( 'i',i )
+    $(offers).each(function (i, offer) {
+        if (name === undefined ||
+            name.length == 0 ||
+            offer.destination.toLowerCase().startsWith(name.toLowerCase())) {
+            //console.log(i,offers);
+            $offers_div.append(
+                $('<div>').append(
+                    $('<h3>').html(
+                        $('<a>')
+                            .html(offer.title + ' : ' + '<small>' + offer.period.from + ' - ' + offer.period.to + '</small>')
+                            .attr('href', '#')
+                            .on('click', showFull)
+                            .data('i', i)
+                    )
                 )
-                )
-        );
-            }
+            );
+        }
     });
 }
-function showFull(){
-    var i = $(this).data( 'i' );
-    var offer = offers[i];     
-    $( '#show' ).empty();   // elimina elementele copil \n
+function showFull() {
+    var i = $(this).data('i');
+    var offer = offers[i];
+    $('#show').empty();   // elimina elementele copil \n
     //alert( offer.title ); 
-    $(document).ready(function(){
-        $( '#show' ).append(
-            $( '<h2>' ).html( offer.title + '<br>' + 
-                            'Destintation' + ': ' + offer.destination + '  ' + '<br>' +'<small>' + 
-                            'From' + ': ' + offer.period.from + '  ' + '<br>' +
-                            'To' + ': ' + offer.period.to + '</small>' +  '  ' + '<br>' +
-                            offer.photo + '  ' + '<br>' +
-                            'Price' + ': ' + offer.price + ' ' + 'GBP'
-                        )
-                    )                    
-            });
+    $(document).ready(function () {
+        $('#show').append(
+            $('<h2>')
+                .css({ 
+                    'justify-content': 'center',
+                    'align-items': 'center',
+                    'display': 'flex',
+                    'flex-direction': 'column'
+                    })
+                    .html(offer.title + '<br>' +
+                          'Destintation' + ': ' + offer.destination + '<br>'
+                           + '<small>' + 'From' + ': ' + offer.period.from + '  ' + '<br>' +
+                          'To' + ': ' + offer.period.to + '</small>' + '  ' + '<br>' +               
+               
+                          'Price' + ': ' + offer.price + ' ' + 'GBP'
+                
+            ).append($("<img>").attr("src", offer.photo).css({'border-radius':'8px', 'display':'block'}) )
+        ).append($("h3").empty())
+    });
 }
 
-$(  '#filters input' ).on('keyup', function(){
+$('#filters input').on('keyup', function () {
     var name = $(this).val();
-    showTeasers( name );    
+    showTeasers(name);
 })
 
 showTeasers();
