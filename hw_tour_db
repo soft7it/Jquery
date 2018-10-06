@@ -82,16 +82,20 @@ function showFull() {
                     'justify-content': 'center',
                     'align-items': 'center',
                     'display': 'flex',
-                    'flex-direction': 'column'
+                    'flex-direction': 'column',
+                    'width': '419px',
+                    'border': '1px solid #d85103',
+                    'height': '485px',
+                    'border-radius': '7px'
                     })
                     .html(offer.title + '<br>' +
                           'Destintation' + ': ' + offer.destination + '<br>'
                            + '<small>' + 'From' + ': ' + offer.period.from + '  ' + '<br>' +
                           'To' + ': ' + offer.period.to + '</small>' + '  ' + '<br>' +               
-               
                           'Price' + ': ' + offer.price + ' ' + 'GBP'
                 
-            ).append($("<img>").attr("src", offer.photo).css({'border-radius':'8px', 'display':'block'}) )
+            ).append($("<img>").attr("src", offer.photo).css({'border-radius':'8px', 'display':'block', 'margin-bottom':'3px'}) )
+            .append($('<button>').text( 'ORDER'))
         ).append($("h3").empty())
     });
 }
@@ -99,6 +103,7 @@ function showFull() {
 $('#filters input').on('keyup', function () {
     var name = $(this).val();
     showTeasers(name);
+    $("#show").empty()
 })
 
 showTeasers();
