@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jq - Ajax - api</title>
+</head>
+<body>
+    
+<form action="">
+    <h2>Convert   Any Page to pdg !</h2>
+    <label for="">
+        Copy paste url o desiried page in
+        <input type="text" placeholder="...here">
+    </label>
+    <label for="">
+        <button>GO !</button>
+    </label>
+</form>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="money.js"></script>
+    
+</body>
+</html>
+
+//////////////https://pdflayer.com/
+
+const SERVICE_URL = 'http://api.pdflayer.com/api/convert';
+const SERVICE_KEY = 'c477b793a06b3630d511666ecbe38a21';
+
+function init(){
+    disableButton();
+    watchInput();
+    watchButton();
+
+}
+function getPdf(url){
+    $.get(SERVICE_URL + '?access_key='
+    + SERVICE_KEY + '&document_url=' + url)
+    .done(function(data){
+        //console.log(data);
+        var encoded = URL.createObjectURL(data);
+       $('<body>').append(
+        $('<iframe>').attr('src',encoded)
+        );
+    })
+    .fail(function(data){
+        console.log(data);
+    })
+}
+
+function watchButton(){
+    $('button').on('click', function(e){
+      e.preventDefault();// opreste actiunea implicita  
+      var url = $('input').val();
+      getPdf(url);
+    });
+}
+function disableButton(){
+    $('button').attr('disabled', true);
+}
+function enableButton(){
+    $('button').attr('disabled', false);
+}
+function watchInput(){
+    $('input').on('keyup paste', function(){  /// ;event 1 event2.....
+        var url = $(this).val();
+        if( url.length>10 ){
+            enableButton();
+        }else{
+            disableButton(); 
+        }
+
+        ///alert();
+    });
+}
+ init();
