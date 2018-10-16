@@ -1,0 +1,114 @@
+var offers = [];
+const TOTAL_OFFERS = 100;  // REZULTATE PE PAGINA
+const PER_PAGE = 10;  // REZULTATE PE PAGINA
+
+function generateOffers(){
+// generam offers
+for(var i = 1; i<=100; i++){
+    var city = faker.address.city();
+    offers.push({
+        title:faker.lorem.sentence(5) + city,
+        description: city,
+        destination:faker.lorem.paragraph(30),
+        cover:'https://picsum.photos/300/200?image=' + faker.random.number(100),
+        date_from: faker.date.between('2018-01-01','2018-04-01'),
+        date_from:faker.date.between('2018-04-01','2018-07-01'),
+        price: faker.commerce.price(2000,3000),
+
+    }
+        );
+}
+}
+
+//console.table( offers );
+
+
+
+function generatePages(){
+    for(var p=1; p <= TOTAL_OFFERS/PER_PAGE; p++){  //formeaza pagini 100/10=10
+    $('.w3-border a:last')  // cauta clasa
+        .before($('<a>').on('click', function swichPage(){
+            var page = $(this).text();
+            showPage(page);    //ea pagina si o determina separat
+            $(this).parent().find('a').removeClass('w3-green'); // adauga clasa
+            $(this).addClass('w3-green');  // sa coloreze butonu
+
+        }) // creaza virtual
+        .attr('href', '#')  // creaza adresa
+        .addClass('w3-bar-item w3-button')  // cauta classa
+        .html(p));  // genereaza pagini
+    }
+}
+/**
+ * Arata o pajina
+ * @param p - reprezinta nr. pagini
+ *  */
+// primeste nr paginii
+function showPage( p ){
+    $offers = $('.offers');
+    $offers.empty();
+    for(var i = (p-1)* 10; i < p*10; i++){
+        $offers.append(
+            $('<div>').append(
+                [
+            $('<h2>').html( offers[i].title ),
+            $('<img>').attr( 'src', offers[i].cover ),
+            $('<p>').html( offers[i].price ),
+            $('<hr>'),
+            $('<p>').html(offers[i].date_from),
+            $('<p>').html(offers[i].date_to),
+            ]
+            )
+
+        );
+    }
+}
+
+//0 -> 0...9
+//1 -> 10...19
+//2 -> 20...29
+
+
+
+generateOffers();
+
+generatePages();
+
+showPage(1);
+
+////////////
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel Agensy</title>
+    <link rel="stylesheet" href="tours.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<body>
+    
+<div class="w3-center offers">
+    <!--  loc pentru oferte-->
+</div>
+
+    <div class="w3-center">
+        <div class="w3-bar w3-border">
+          <a href="#" class="w3-bar-item w3-button">&laquo;</a>
+
+          <a href="#" class="w3-bar-item w3-button"> </a>
+          
+          <a href="#" class="w3-bar-item w3-button">&raquo;</a>
+        </div>
+        </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="tours.js"></script>
+</body>
+</html>
