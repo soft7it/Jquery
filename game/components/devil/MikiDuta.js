@@ -10,13 +10,27 @@ class MikiDuta{
     });
         $('#map').append( div );
         this.$div = div;  // legatura din personaj nr.5
+        this.hunt();
     }
 
     // va cauta obiectur vinat
-    hunt( target /* obiectul vinat*/){
-        console.log( 'HUNTING TARGET', target.x, target.y );
+    hunt(){
+
+
+
         var _self = this;
         setInterval(function(){
+            var target = null;
+        // cautam calaboku pe harta
+            for (var t=0; t<game_map.things.length; t++){
+              if(game_map.things[t] instanceof Chain ){
+                target = game_map.things[t];
+              }
+
+        }
+            if(!target) return;
+
+        console.log( 'HUNTING TARGET', target.x, target.y );
            // console.log(this);
             if(target.x>_self.x){
                 _self.turnRight();
@@ -27,12 +41,18 @@ class MikiDuta{
                 _self.turnLeft();
                 _self.moveLeft();
             }
-            // if(_self.directions=='up'){
-            //     _self.moveUp();
-            // }
-            // if(_self.directions=='down'){
-            //     _self.moveDown();
-            // }
+            if(target.y<_self.y){
+                _self.turnUp();
+                _self.moveUp();
+            }
+            if(target.y>_self.y){
+                _self.turnDown();
+                _self.moveDown();
+            }
+            if( target.y ==_self.y && target.x==_self.y )   {
+                target.hp-=10;
+            }
+
         },1000);
     }
 
@@ -46,11 +66,11 @@ class MikiDuta{
         this.$div.css('left', this.x * 50 + 'px');
     }
     moveUp(){
-        this.y++;
+        this.y--;
         this.$div.css('top', this.y * 50 + 'px');
     }
     moveDown(){
-        this.y--;
+        this.y++;
         this.$div.css('top', this.y * 50 + 'px');
     }
 
